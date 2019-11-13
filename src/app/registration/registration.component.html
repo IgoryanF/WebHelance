@@ -1,0 +1,148 @@
+<body>
+  <header class="header">
+      <div class="contain">
+        <div class="container-normal">
+          <div class="header_inner">
+            <div class="logo-link">
+              <a class="nav_link" href="#" style="margin-left: 20px; font-family: 'Montserrat', sans-serif; font-size: 25px;">
+                <img src="/assets/images/logo.jpg" style="width: 45px; height: 45px; border-radius: 10px;">
+                Helance
+              </a>
+              <a routerLink="/home" class="nav_link line">Главная</a>
+            </div>
+            <nav>
+              <div class="navigation">
+              <a routerLink="/registration" class="nav_link line" style="color: white">Регистрация</a>
+              <a routerLink="/signIn" class="nav_link line" style="color: white">
+                <img src="/assets/images/login.png" style="width: 25px; height: 25px;">
+                Вход
+              </a>
+              </div>
+            </nav>
+          </div>
+        </div>
+
+
+      <!--SignUpForm-->
+        <div class="container">
+          <h1 class="title">Интеллектуальная биржа для студентов</h1>
+          <div class="formContainer formContainer-rel">
+            <form novalidate method="post" [formGroup]="signUpForm" (ngSubmit)="addUser(user)">
+              <div class="form_title">
+                Зарегистрироваться
+              </div>
+              <div *ngIf="!loginFlag && submitted" class="alert alert-danger" role="alert">
+                Данный ник уже занят
+              </div>
+              <div class="form-group">
+                <input
+                  [(ngModel)]="user.email"
+                  class="form-control"
+                  name="email" id="email"
+                  type="email"
+                  formControlName="email"
+                  placeholder="Email"
+                />
+                <div *ngIf="(email.invalid && (email.dirty || email.touched)) || (email.invalid && submitted)" >
+                  <label *ngIf="email.errors.required" class="error" for="email">
+                    Email не должен быть пустым
+                  </label>
+                  <label *ngIf="email.errors.email && email.touched" class="error" for="email">
+                    Введите корректный email
+                  </label>
+                </div>
+              </div>
+              <div class="form-group">
+                <input
+                  [(ngModel)]="user.login"
+                  class="form-control"
+                  name="login"
+                  placeholder="Логин"
+                  id="login"
+                  type="text"
+                  formControlName="login"
+                />
+                <div *ngIf="(login.invalid && (login.dirty || login.touched)) || (login.invalid && submitted)">
+                  <label *ngIf="login.errors.required" class="error" for="login">
+                    Логин не должен быть пустым
+                  </label>
+                  <label *ngIf="login.errors.minlength && login.touched" class="error" for="login">
+                    Логин должен быть не короче 5 символов
+                  </label>
+                </div>
+              </div>
+              <div class="form-group">
+                <input
+                  [(ngModel)]="user.name"
+                  placeholder="Фамилия и имя"
+                  class="form-control"
+                  name="fullName"
+                  id="fullName"
+                  type="text"
+                  formControlName="name"
+                />
+                <div *ngIf="(name.invalid && (name.touched || name.dirty)) || (name.invalid && submitted)">
+                  <label *ngIf="name.errors.required" class="error" for="fullName">
+                    Это поле не должно быть пустым
+                  </label>
+                  <label *ngIf="name.errors.minlength && name.touched" class="error" for="fullName">
+                    Это поле должно быть не короче 6 символов
+                  </label>
+                </div>
+              </div>
+              <fieldset formGroupName="passwordGroup">
+                <div class="form-group">
+                  <input
+                    [(ngModel)]="user.password"
+                    class="form-control"
+                    name="password"
+                    id="password"
+                    type="password"
+                    placeholder="Пароль"
+                    formControlName="password"
+                  />
+                  <div *ngIf="(password.invalid && (password.dirty || password.touched)) || (password.invalid && submitted)">
+                    <label *ngIf="password.errors.required" class="error" for="password">
+                      Пароль не должен быть пустым
+                    </label>
+                    <label *ngIf="password.errors.minlength && password.touched" class="error" for="password">
+                      Пароль должен быть не короче 8 символов
+                    </label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <input
+                    class="form-control"
+                    name="repeatPassword"
+                    id="repeatPassword"
+                    type="password"
+                    placeholder="Повторите пароль"
+                    formControlName="repeatPassword"
+                  />
+                  <div *ngIf="(passwordGroup.get('repeatPassword').invalid && passwordGroup.get('repeatPassword').touched) || (passwordGroup.get('repeatPassword').invalid && submitted); else checkPassVal">
+                    <label *ngIf="passwordGroup.get('repeatPassword').errors.required" class="error" for="repeatPassword">
+                      Это поле не должно быть пустым
+                    </label>
+                  </div>
+                  <ng-template #checkPassVal>
+                    <label *ngIf="passwordGroup.errors?.checkedPasswords && passwordGroup.get('repeatPassword').dirty" class="error" for="repeatPassword">
+                        Пароли не совпадают
+                    </label>
+                  </ng-template>
+                </div>
+              </fieldset>
+              <button
+                [disabled]="loading"
+                class="btn btn-outline-success btn-block"
+                style="margin-top: 30px"
+              >
+                <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                Зарегистрироваться
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+  </header>
+</body>
+

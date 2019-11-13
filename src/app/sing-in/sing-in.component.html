@@ -1,0 +1,65 @@
+<body>
+  <div class="container">
+    <h1 class="title">Интеллектуальная биржа для студентов</h1>
+    <div class="formContainer formContainer-rel">
+      <form novalidate [formGroup]="signInForm" (ngSubmit)="checkUser(signInForm)">
+        <div class="form_title">
+          Вход
+        </div>
+        <div *ngIf="!flag && submitted" class="alert alert-danger" role="alert">
+          Неверный email или пароль
+        </div>
+        <div class="form-group">
+          <input
+            class="form-control"
+            name="email"
+            id="email"
+            type="email"
+            placeholder="Email"
+            formControlName="email"
+          >
+          <div *ngIf="f.email.errors && submitted" >
+            <label *ngIf="f.email.errors.required" class="error" for="email">
+              Email не должен быть пустым
+            </label>
+            <label *ngIf="f.email.errors.email" class="error" for="email">
+              Введите корректный email
+            </label>
+          </div>
+        </div>
+        <div class="form-group">
+          <input
+            class="form-control"
+            id="password"
+            name="password"
+            type="password"
+            placeholder="Password"
+            formControlName="password"
+          >
+          <div *ngIf="f.password.invalid && submitted">
+            <label *ngIf="f.password.errors.required" class="error" for="password">
+              Пароль не должен быть пустым
+            </label>
+          </div>
+        </div>
+        <div class="forgot_password">
+          <a class="nav_link" href="#">
+            Забыли пароль?
+          </a>
+        </div>
+        <button
+          class="btn btn-outline-success btn-block"
+          type="submit"
+          style="margin-top: 20px">
+          Войти
+        </button>
+        <div class="dont_registration">
+          Ещё не зарегистрированы?
+          <a routerLink="/registration" class="nav_link" style="margin-left: 2px">
+            Регистрация
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>

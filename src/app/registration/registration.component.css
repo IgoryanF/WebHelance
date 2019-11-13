@@ -1,0 +1,145 @@
+
+/*Header*/
+
+.header{
+  width: 100%;
+  min-width: 1060px!important;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+.logo-link{
+  display: flex;
+  align-items: center;
+  margin-left: 40px;
+}
+.container-normal{
+  padding: 20px 0 0 0;
+  margin-bottom: 10px;
+}
+.navigation{
+  display: flex;
+  align-items: center;
+  margin-right: 30px;
+}
+.nav_link{
+  position: relative;
+  color: white;
+  text-decoration: none;
+  font-size: 20px;
+  vertical-align: top;
+  font-weight: bold;
+  margin: 0 25px;
+}
+.nav_link.line:after{
+  content: "";
+  display: none;
+  width: 100%;
+  height: 3px;
+
+  background-color: white;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1;
+}
+.nav_link.line:hover:after{
+  display: block;
+}
+.header_inner{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/*Forms*/
+.container{
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  min-height: 100%;
+  padding: 40px 20px 20px 20px;
+}
+
+.title{
+  text-align: center;
+  width: 450px;
+  margin: 0 0 40px 0;
+  font-family: 'Noto Serif', serif;
+  font-size: 32px;
+  color: white;
+}
+
+.form_title {
+  margin-bottom: 40px;
+  font: 400 24px "Open Sans", sans-serif;
+  text-align: center;
+}
+
+.formContainer{
+  box-sizing: border-box;
+  width: 450px;
+  padding: 34px 56px;
+  border: 1px solid #1279ff;
+  border-radius: 5px;
+  background: #fafafa;
+  margin-bottom: 5px;
+}
+.formContainer-rel{
+  position: relative;
+}
+.contain{;
+  width: 100%;
+  background: url("src/assets/images/back_2.jpg") center no-repeat;
+
+  background-size: cover;
+}
+
+body{
+  min-width: 1060px!important;
+}
+
+
+label.error {
+  position: absolute;
+  z-index: 500;
+  display: block;
+  top: 50%;
+  left: 100%;
+  transform: translateY(-50%);
+  padding: 7px 12px;
+  margin: 0 0 0 15px;
+  white-space: nowrap;
+  background-color: #e95454;
+  font-size: 13px;
+  color: #fff;
+  border-radius: 2px;
+}
+
+label {
+  cursor: default;
+}
+
+label.error::before {
+  z-index: 100;
+  position: absolute;
+  content: "";
+  left: 0;
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  width: 10px;
+  height: 10px;
+  background-color: #e95454;
+}
+
+.form-group{
+  position: relative;
+}
+
+
+
+
+
