@@ -58,21 +58,6 @@ export class RegistrationComponent implements OnInit {
   get passwordGroup() {
     return this.signUpForm.get('passwordGroup');
   }
-
-  // submit(form: FormGroup) {
-  //   this.submitted = true;
-  //   if (form.valid) {
-  //     if (this.usersService.findUserByLogin(form.get('login').value)) {
-  //       console.log('Пользователь с таким ником уже есть');
-  //       this.loginFlag = false;
-  //     } else {
-  //       this.usersService.addUser(new User(form.get('email').value, form.get('login').value, form.get('name').value,
-  //         form.get('passwordGroup').get('password').value));
-  //       console.log(this.usersService.getAllUsers());
-  //       this.router.navigate(['/signIn']);
-  //     }
-  //   }
-  // }
   public async addUser(user: User) {
     this.submitted = true;
     if (this.signUpForm.valid) {

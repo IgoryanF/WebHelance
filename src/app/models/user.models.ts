@@ -1,17 +1,11 @@
 import {Task} from './task.models';
 
 export class User {
-  id: number;
+  id: any;
   email: string;
-  login: string;
+  user_login: string;
   name: string;
   password: string;
-  taskArray: Task[];
+  tasks: Task[];
 
-  // constructor(email: string, login: string, name: string, password: string) {
-  //   this.email = email;
-  //   this.login = login;
-  //   this.name = name;
-  //   this.password = password;
-  // }
 }

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {UsersService} from '../core/api/users.service';
 import {User} from '../models/user.models';
+import {Task} from '../models/task.models';
+
 
 @Component({
   selector: 'app-main-page',
@@ -13,7 +15,9 @@ export class MainPageComponent implements OnInit {
   constructor(private userService: UsersService) { }
 
   ngOnInit() {
-    this.userService.getUsers().subscribe((users: User[]) => this.users = users);
+    this.userService.getUsers().subscribe((users: User[]) => {
+      this.users = users;
+    });
   }
 
 }

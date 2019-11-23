@@ -1,7 +1,7 @@
 <div *ngFor="let user of users">
   <ul>
     <li>
-      {{user.login + user.email + user.name}}
+      {{ user.id + user.login + user.email + user.name + user.tasks }}
     </li>
   </ul>
 </div>

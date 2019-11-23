@@ -13,7 +13,7 @@ export class UsersService {
   constructor(private http: HttpClient) { }
 
   getUsers(): Observable<User[]> {
-    return this.http.get(`${environment.apiUrl}getallusers`).pipe(map((users: any[]) => users));
+    return this.http.get(`${environment.apiUrl}/getallusers`).pipe(map((users: any[]) => users));
   }
   findUserByEmailAndPassword(email: string, password: string) {
     return this.users.filter(user => user.email === email && user.password === password)[0];
