@@ -1,0 +1,43 @@
+<!--<button type="button" mdbBtn color="default" rounded="true" data-toggle="modal" data-target="#basicExample"-->
+<!--        (click)="openModal()" mdbWavesEffect>Launch Modal-->
+<!--</button>-->
+
+<div id="frameModalTop" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <!--Content-->
+    <div class="modal-content">
+
+      <!--Header-->
+      <div  style="align-self: center; position: absolute; top: -30px">
+        <img src="assets/images/telegram.png" style="width: 80px; height: 80px">
+      </div>
+      <!--Body-->
+      <div class="modal-body mb-1" style="margin-top: 40px">
+
+        <h5 class="mt-1 mb-2 text-center">Добавить учетную запись Telegram</h5>
+
+        <div class="md-form ml-0 mr-0">
+            <form novalidate method="post" [formGroup]="telegramForm">
+          <input type="text" id="form29" class="form-control form-control-sm ml-0"
+                 mdbInput mdbValidate formControlName="modalFormTelegram" placeholder="@Telegram name" style="font-size: 25px">
+          <div *ngIf="modalFormTelegram.invalid && (modalFormTelegram.dirty ||modalFormTelegram.touched)">
+            <mdb-error *ngIf="modalFormTelegram.errors.required" style="margin-top: 18px">
+              Это поле не должно быть пустым
+            </mdb-error>
+          </div>
+          </form>
+        </div>
+
+        <div class="text-center mt-4">
+          <button mdbBtn color="cyan" rounded="true" class="mt-1 waves-light" (click)="bsModalRef.hide()" mdbWavesEffect>Добавить
+          </button>
+        </div>
+      </div>
+
+    </div>
+    <!--/.Content-->
+
+</div>
+
+
+

@@ -1,72 +1,12 @@
-<!--<header style="background: #e95454" xmlns="http://www.w3.org/1999/html">-->
-<!--  <div class="container-normal">-->
-<!--    <div class="header_inner" style="display: flex; justify-content: space-between; align-items: center">-->
-<!--      <div class="logo-link">-->
-<!--        <a class="nav_link" href="#" style="margin-left: 20px; font-family: 'Montserrat', sans-serif; font-size: 25px;">-->
-<!--          <img src="/assets/images/logo.jpg" style="width: 45px; height: 45px; border-radius: 10px;">-->
-<!--          Helance-->
-<!--        </a>-->
-<!--        <a routerLink="/home" class="nav_link line">Главная</a>-->
-<!--      </div>-->
-<!--      <nav>-->
-<!--        <div class="navigation">-->
-<!--          <a routerLink="/registration" class="nav_link line" style="color: white">Регистрация</a>-->
-<!--          <a routerLink="/signIn" class="nav_link line" style="color: white">-->
-<!--            <img src="/assets/images/login.png" style="width: 25px; height: 25px;">-->
-<!--            Вход-->
-<!--          </a>-->
-<!--        </div>-->
-<!--      </nav>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</header>-->
-
-<header>
-
-  <nav class="navbar fixed-top navbar-expand-lg navbar-dark pink scrolling-navbar">
-    <a class="navbar-brand" href="#"><strong>Navbar</strong></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Features</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Pricing</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Opinions</a>
-        </li>
-      </ul>
-      <ul class="navbar-nav nav-flex-icons">
-        <li class="nav-item">
-          <a class="nav-link"><i class="fab fa-facebook-f"></i></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link"><i class="fab fa-twitter"></i></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link"><i class="fab fa-instagram"></i></a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-
-</header>
-
-
-
-
-<div class="count_tasks">Найденно {{count}} заказов</div>
+<div *ngIf="tasksArray.length; else noTasks">
+  <div class="count_tasks">Найденно {{tasksArray.length}} заказов</div>
+</div>
+<ng-template #noTasks>
+  <div class="count_tasks">Ничего не найдено</div>
+</ng-template>
 <div class="main_information_about_tasks">
   <div class="all_tasks">
-    <div *ngFor="let task of tasksArray">
+    <div *ngFor="let task of returnTaskArray; let i = index">
       <div class="task_card">
         <a class="close">
           <img src="assets/images/icons8-close-window-30.png">
@@ -101,12 +41,40 @@
             <div class="customer">
               <div class="customer_avatar_and_login">
                 <img src="https://a24.biz/assets/img/avatars/size40x40/0/default.jpg" class="sc-bIqbHp tmBUA">
-                <span style="font-size: 16px; margin-left: 12px">login_user</span>
+                <span class="login_user" solid style="font-size: 16px; margin-left: 12px" ngDefaultControl>{{login[i]}}</span>
               </div>
               <div class="customer_files">
                 Прикрепленные файлы
               </div>
-              <button type="button" class="btn btn-outline-primary">Связаться</button>
+<!--Связаться-->
+              <button type="button" mdbBtn color="primary" class="relative waves-light"
+                      (click)="basicModal.show()" mdbWavesEffect>
+                Связаться
+              </button>
+              <div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+                        <span aria-hidden="true">×</span>
+                      </button>
+                      <h4 class="modal-title w-100" id="myModalLabel">Связаться с заказчиком</h4>
+                    </div>
+                    <div class="modal-body" style="display: flex; justify-content: space-around; align-items: center">
+                      <h5>Написать в telegram</h5>
+                      <a type="button" mdbBtn floating="true" color="email" class="waves-light"
+                         (click)="getSocialNetwork(i)" mdbWavesEffect>
+                        <img src="assets/images/telegram.png" style="width: 52px; height: 52px">
+                      </a>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="basicModal.hide()" mdbWavesEffect>Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
             </div>
           </div>
           <div class="description">
@@ -118,6 +86,7 @@
         </div>
       </div>
     </div>
+      <pagination *ngIf="returnTaskArray.length" [totalItems]="tasksArray.length" (pageChanged)="pageChanged($event)" style="justify-self: center"></pagination>
   </div>
   <div class="filter_tasks">
     <div class="filter_title">
@@ -125,7 +94,7 @@
       <span (click)="throwOffFilter()" class="nav_link">Сбросить</span>
     </div>
     <div class="input-group md-form form-sm form-2 pl-0">
-      <input [(ngModel)]="subject" class="form-control my-0 py-1 amber-border" type="text"
+      <input (keydown.enter)="taskFilter(subject)" [(ngModel)]="subject" class="form-control my-0 py-1 amber-border" type="text"
              placeholder="Введите тип работы" aria-label="Search">
       <div class="input-group-append">
         <span class="input-group-text amber lighten-3" id="basic-text1">
@@ -134,10 +103,12 @@
       </div>
     </div>
     <button
+      (click)="taskFilter(subject)"
       class="btn btn-outline-success btn-block"
       style="margin-top: 25px; width: 90%; align-self: center">
       Применить
     </button>
   </div>
 </div>
+
 

@@ -1,4 +1,5 @@
 import {Task} from './task.models';
+import {SocialNetwork} from "./socialNerwork.models";
 
 export class User {
   id: any;
@@ -7,5 +8,5 @@ export class User {
   name: string;
   password: string;
   tasks: Task[];
-
+  socialNetworks: SocialNetwork[];
 }

@@ -1,0 +1,188 @@
+.main_information_about_tasks {
+  display: grid;
+  grid-template-columns: 5fr 2fr;
+  grid-column-gap: 30px;
+}
+.task_card {
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 0;
+  height: auto;
+  position: relative;
+  border: solid 2px #2aff79;
+  border-radius: 5px;
+  z-index: auto;
+}
+.count_tasks {
+  align-self: center;
+  margin: 30px 20px;
+  font-family: 'Calistoga', cursive;
+  font-size: 25px;
+  width: 100%;
+}
+.all_tasks {
+  margin-left: 50px;
+  display: grid;
+  grid-gap: 22px;
+  grid-auto-flow: row;
+  grid-auto-rows: minmax(auto, auto);
+}
+.close {
+  align-items: center;
+  top: 0;
+  position: absolute;
+  right: 0;
+  z-index: 100;
+}
+.task_main_info {
+  display: flex;
+  flex-flow: row nowrap;
+}
+.task_content {
+  position: relative;
+  padding: 16px 15px;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 0;
+  min-width: 0;
+}
+
+/* Дата*/
+.date_info, .subject_task {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.date_start {
+  display: inline-block;
+  width: 200px;
+  color: #9b9b9b;
+  font-size: 13px;
+  line-height: 18px;
+  vertical-align: middle;
+  text-transform: capitalize;
+}
+.date_deadline {
+  display: inline-block;
+  color: #333;
+  font-size: 13px;
+  line-height: 18px;
+  vertical-align: middle;
+}
+
+/*Область*/
+.subject, .headline {
+  display: inline-block;
+  font-size: 18px;
+  color: blue;
+}
+.subject {
+  margin-right: 20px;
+}
+
+/*Цена*/
+.price_container {
+  position: relative;
+  display: flex;
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: 200px;
+  flex-flow: column;
+  justify-content: flex-start;
+  padding: 24px 32px 16px 16px;
+  align-items: center;
+}
+.views_count {
+  position: relative;
+  font-size: 14px;
+}
+.price{
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/*О заказчике*/
+.user_info {
+  position: relative;
+}
+.customer_info_main {
+  display: flex;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  flex-flow: row nowrap;
+  padding: 0 16px 32px;
+}
+.customer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 0;
+}
+.customer_avatar_and_login {
+  display: flex;
+  margin-right: 16px;
+  align-items: center;
+  font-size: 12px;
+}
+.tmBUA {
+  max-width: 80px;
+  max-height: 80px;
+  min-width: 80px;
+  min-height: 80px;
+  margin-right: 8px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0 0 1px;
+  vertical-align: middle;
+}
+.customer_files {
+  display: flex;
+  margin-right: 16px;
+  font-size: 14px;
+  align-items: center;
+}
+.description {
+  padding: 5px 6px;
+  border-top: 1px solid #e1e1e1;
+  color: #8d8d8d;
+  line-height: 24px;
+}
+.description_view_box {
+  overflow-y: auto;
+  max-height: 500px;
+  padding: 5px 6px;
+  word-break: break-word;
+}
+.description_title {
+  margin-bottom: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+/*Фильтр*/
+.filter_tasks {
+  display: flex;
+  flex-direction: column;
+  margin-right: 25px;
+  padding: 10px 10px;
+  border: solid 2px #a2d1ff;
+  border-radius: 3px;
+  height: min-content;
+}
+.filter_title {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+.nav_link:hover {
+  color: blue;
+  cursor: pointer;
+}
+
+.nav-link.waves-light {
+  font-size: 17px;
+}
+
+

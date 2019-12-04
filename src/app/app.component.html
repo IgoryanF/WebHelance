@@ -1,3 +1,103 @@
-<!--<app-registration></app-registration>-->
-<!--<app-sing-in></app-sing-in>-->
+<header *ngIf="!noActiveNavigation()">
+  <!--Navbar-->
+  <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark unique-color" [containerInside]="false" style="align-items: center">
+
+    <mdb-navbar-brand><a class="navbar-brand" routerLink="/home" solid style="font-size: 28px">
+      <img src="/assets/images/logo.jpg" style="width: 35px; height: 35px; border-radius: 10px;">
+      Helance</a>
+    </mdb-navbar-brand>
+
+
+    <links>
+
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link waves-light" routerLink="/home" mdbWavesEffect>
+            Главная<span class="sr-only">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item dropdown mega-dropdown" mdbDropdown>
+          <a mdbDropdownToggle class="nav-link dropdown-toggle">Меню</a>
+          <div class="dropdown-menu mega-menu row z-depth-1 primary-color-dark">
+            <div class="row">
+              <div class="col-md-5 col-xl-3 sub-menu mt-5 mb-5 pl-4">
+                <ul class="list-unstyled mx-4 pl-0 dark-grey-text">
+                  <li class="sub-title text-uppercase mt-sm">
+                    <a class="menu-item" routerLink="/tasks">Найти заказ</a>
+                  </li>
+                  <li class="sub-title text-uppercase">
+                    <a class="menu-item" href="">Разместить резюме</a>
+                  </li>
+                  <li class="sub-title text-uppercase">
+                    <a class="menu-item" href="">Разместить заказ</a>
+                  </li>
+                  <li class="sub-title text-uppercase">
+                    <a class="menu-item" [routerLink]="['/tasks', login]">Мои заказы</a>
+                  </li>
+                  <li class="sub-title text-uppercase">
+                    <a class="menu-item" (click)="openSocialNetworkAddModal()">Как со мной связаться</a>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="col-md-7 col-xl-9">
+                <div class="row">
+                  <div class="col-xl-6 mt-5 mb-4 pr-5 clearfix d-none d-block">
+                    <span class="sub-title p-sm mb-4 text-uppercase font-weight-bold text-white">
+                      Здесь вы сможете оставить свой заказ
+                    </span>
+                    <div class="view overlay pb-3" style="margin-top: 10px">
+                      <img src="/assets/images/Frelance.jpg" class="img-fluid z-depth-1" alt="First sample image">
+                    </div>
+                  </div>
+
+                  <div class="col-xl-6 mt-5 mb-4 pr-5 clearfix d-none d-block">
+                    <span class="sub-title p-sm mb-4 text-uppercase font-weight-bold text-white">
+                      Здесь каждому исполнителю найдется работа
+                    </span>
+                    <div class="view overlay pb-3" style="margin-top: 10px">
+                      <img src="/assets/images/profi.jpg" class="img-fluid z-depth-1" alt="First sample image" style="height: 260px; width: 500px">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link waves-light" mdbWavesEffect><mdb-icon fas icon="cog"></mdb-icon> Настройки</a>
+        </li>
+
+        <!-- Dropdown -->
+        <li class="nav-item dropdown" dropdown>
+          <a dropdownToggle  type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+            <mdb-icon fas icon="user"></mdb-icon> Профиль<span class="caret"></span></a>
+          <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
+            <a class="dropdown-item waves-light" mdbWavesEffect href="#">Мой профиль</a>
+            <a class="dropdown-item waves-light" mdbWavesEffect (click)="openModal(template)">Выход</a>
+
+            <ng-template #template>
+              <div class="modal-body text-center">
+                <p>Вы действительно хотите выйти?</p>
+                <button type="button" class="btn btn-default" (click)="exit()" >Да</button>
+                <button type="button" class="btn btn-primary" (click)="noExit()" >Нет</button>
+              </div>
+            </ng-template>
+
+          </div>
+        </li>
+
+      </ul>
+
+    </links>
+
+  </mdb-navbar>
+
+</header>
+
+
 <router-outlet></router-outlet>
+

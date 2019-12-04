@@ -5,6 +5,7 @@ import {Task} from '../../models/task.models';
 import {environment} from '../../../environments/environment';
 import {map} from 'rxjs/operators';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -13,7 +14,12 @@ export class TasksService {
   getAllTasks(): Observable<Task[]> {
     return this.http.get(`${environment.apiUrl}/getAllTasks`).pipe(map((tasks: any[]) => tasks));
   }
-  getCountTasks(): Observable<any> {
-    return this.http.get(`${environment.apiUrl}/getCountTasks`).pipe(map((count: any) => count));
+
+  getUserLoginByTaskId(id: number): Observable<any> {
+    return this.http.get(`${environment.apiUrl}/userbytaskid/${id}`, {responseType: 'text'}).pipe(map((login: string) => login));
+  }
+  getAllUserTasks(login: string): Observable<Task[]> {
+    return this.http.get(`${environment.apiUrl}/getAllUsersTasks/${login}`)
+      .pipe(map((tasks: any[]) => tasks));
   }
 }

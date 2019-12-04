@@ -1,7 +1,5 @@
 .main_information_about_tasks {
-  display: grid;
-  grid-template-columns: 5fr 2fr;
-  grid-column-gap: 30px;
+  display: flex;
 }
 .task_card {
   flex-grow: 1;
@@ -12,6 +10,7 @@
   border: solid 2px #2aff79;
   border-radius: 5px;
   z-index: auto;
+  width: 800px;
 }
 .count_tasks {
   align-self: center;
@@ -26,13 +25,6 @@
   grid-gap: 22px;
   grid-auto-flow: row;
   grid-auto-rows: minmax(auto, auto);
-}
-.close {
-  align-items: center;
-  top: 0;
-  position: absolute;
-  right: 0;
-  z-index: 100;
 }
 .task_main_info {
   display: flex;
@@ -102,7 +94,6 @@
   font-weight: bold;
 }
 
-/*О заказчике*/
 .user_info {
   position: relative;
 }
@@ -160,24 +151,3 @@
   font-weight: 600;
   color: #333;
 }
-
-/*Фильтр*/
-.filter_tasks {
-  display: flex;
-  flex-direction: column;
-  margin-right: 25px;
-  padding: 10px 10px;
-  border: solid 2px #a2d1ff;
-  border-radius: 3px;
-  height: min-content;
-}
-.filter_title {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 12px;
-}
-.nav_link:hover {
-  color: blue;
-  cursor: pointer;
-}
-

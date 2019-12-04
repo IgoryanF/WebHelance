@@ -1,29 +1,30 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {UsersService} from '../core/api/users.service';
 import {Router} from '@angular/router';
+import {AuthenticationService} from "../core/api/AuthenticationService";
 
 
 @Component({
   selector: 'app-sing-in',
   templateUrl: './sing-in.component.html',
-  styleUrls: ['./sing-in.component.css']
+  styleUrls: ['./sing-in.component.scss']
 })
 
 export class SingInComponent implements OnInit {
 
   public signInForm: FormGroup;
-  @ViewChild('idEmail', {static: false})
-  element: ElementRef;
+  // @ViewChild('idEmail', {static: false})
+  // element: ElementRef;
   submitted = false;
   flag = true;
+  loading = false;
 
-  constructor(private formBuilder: FormBuilder, private usersService: UsersService, private route: Router) {
+  constructor(private formBuilder: FormBuilder, private router: Router, private authService: AuthenticationService) {
   }
 
   ngOnInit() {
     this.signInForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
+      username: ['', [Validators.required]],
       password: ['', [Validators.required]]
     });
   }
@@ -31,28 +32,23 @@ export class SingInComponent implements OnInit {
   get f() {
     return this.signInForm.controls;
   }
-  // get email() {
-  //   return this.signInForm.get('email');
-  // }
-  //
-  // get password() {
-  //   return this.signInForm.get('password');
-  // }
 
-  checkUser(form: FormGroup) {
+  authenticate() {
     this.submitted = true;
-    if (form.invalid) {
-      console.log('Форма не валидна');
-    } else {
-      if (this.usersService.findUserByEmailAndPassword(this.f.email.value, this.f.password.value)) {
-        console.log('Вы вошли в систему');
-        this.route.navigate(['/home/']);
-      } else {
-        if (!this.usersService.findUserByEmail(this.f.email.value) || !this.usersService.findUserByPassword(this.f.password.value))  {
-          this.flag = false;
-        }
-        console.log('Такого пользователя нет');
-      }
+    if (this.signInForm.valid) {
+      this.loading = true;
+      this.authService.login(this.f.username.value, this.f.password.value).subscribe(response => {
+        this.onAccess();
+      },
+          () => {
+        this.flag = false;
+        this.loading = false;
+      });
     }
   }
+
+  private onAccess() {
+    this.router.navigate(['/home']);
+  }
+
 }

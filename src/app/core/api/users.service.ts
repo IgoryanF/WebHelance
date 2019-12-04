@@ -9,21 +9,12 @@ import {map} from 'rxjs/operators';
   providedIn: 'root'
 })
 export class UsersService {
-  users: User[] = [];
   constructor(private http: HttpClient) { }
 
   getUsers(): Observable<User[]> {
     return this.http.get(`${environment.apiUrl}/getallusers`).pipe(map((users: any[]) => users));
   }
-  findUserByEmailAndPassword(email: string, password: string) {
-    return this.users.filter(user => user.email === email && user.password === password)[0];
-  }
-  findUserByEmail(email: string) {
-    return this.users.filter(user => user.email === email)[0];
-  }
-  findUserByPassword(password: string) {
-    return this.users.filter(user => password === user.password)[0];
-  }
+
 }
 
 

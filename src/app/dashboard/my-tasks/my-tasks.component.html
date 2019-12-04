@@ -1,0 +1,55 @@
+<div *ngIf="userTasks.length; else noTasks">
+  <div class="count_tasks">Найденно {{userTasks.length}} заказов</div>
+</div>
+<ng-template #noTasks>
+  <div class="count_tasks">Вы еще не оставляли заказы</div>
+</ng-template>
+<div class="main_information_about_tasks">
+  <div class="all_tasks">
+    <div *ngFor="let task of returnUserTasks; let i = index">
+      <div class="task_card">
+        <div class="task_main_info">
+          <div class="task_content">
+            <div class="date_info">
+              <span class="date_start">{{task.dateStart}}</span>
+              <span class="date_deadline">
+                <img src="assets/images/icons8-calendar-12-80.png" style="width: 20px; height: 20px">
+                {{task.deadline}}
+              </span>
+            </div>
+            <div class="subject_task">
+              <span class="subject">{{task.subject}}</span>
+              <span class="headline">{{task.headLine}}</span>
+            </div>
+          </div>
+          <div class="price_container">
+            <div class="views_count">
+              <span>Просмотров:</span>
+              {{task.views}}
+            </div>
+            <div class="price">
+              <span>Бюджет:</span>
+              {{task.price}}
+            </div>
+          </div>
+        </div>
+        <div class="user_info">
+          <div class="customer_info_main">
+            <div class="customer">
+              <div class="customer_files">
+                Прикрепленные файлы
+              </div>
+            </div>
+          </div>
+          <div class="description">
+            <div class="description_view_box">
+              <div class="description_title">Описание</div>
+              {{task.description}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <pagination *ngIf="returnUserTasks.length" [totalItems]="userTasks.length" (pageChanged)="pageChanged($event)" style="justify-self: center"></pagination>
+  </div>
+</div>
